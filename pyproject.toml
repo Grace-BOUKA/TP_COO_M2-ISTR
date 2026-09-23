@@ -7,7 +7,9 @@ authors = [
     { name = "Grace IKOULHOU BOUKA", email = "gracebouka3337@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "django>=6.1.1",
+]
 
 [project.scripts]
 tp-conception = "tp_conception:main"
