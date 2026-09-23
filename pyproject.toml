@@ -1,0 +1,22 @@
+[project]
+name = "tp-conception"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Grace IKOULHOU BOUKA", email = "gracebouka3337@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+tp-conception = "tp_conception:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.workspace]
+members = [
+    "tp_coo",
+]
