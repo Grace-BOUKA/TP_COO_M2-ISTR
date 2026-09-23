@@ -27,3 +27,6 @@ members = [
 dev = [
     "pre-commit>=4.6.2",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"*/migrations/*"=["ALL"]
