@@ -22,3 +22,8 @@ build-backend = "uv_build"
 members = [
     "tp_coo",
 ]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.6.2",
+]
