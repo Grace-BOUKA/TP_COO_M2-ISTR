@@ -2,6 +2,12 @@ version = 1
 revision = 3
 requires-python = ">=3.12"
 
+[manifest]
+members = [
+    "tp-conception",
+    "tp-coo",
+]
+
 [[package]]
 name = "asgiref"
 version = "3.12.1"
@@ -180,6 +186,11 @@ requires-dist = [{ name = "django", specifier = ">=6.1.1" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pre-commit", specifier = ">=4.6.2" }]
+
+[[package]]
+name = "tp-coo"
+version = "0.1.0"
+source = { editable = "tp_coo" }
 
 [[package]]
 name = "tzdata"
