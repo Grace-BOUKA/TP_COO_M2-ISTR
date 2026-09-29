@@ -11,6 +11,7 @@ class Pays(models.Model):
         return self.nom
 
 
+
 class Ville(models.Model):
     nom = models.CharField(max_length=100)
     taxe_immobiliere = models.FloatField()
@@ -34,6 +35,9 @@ class Machine(models.Model):
     def __str__(self):
         return self.nom
 
+    def costs(self):
+        return self.prix
+
 
 class QuantiteMachine(models.Model):
     machine = models.ForeignKey(
@@ -43,7 +47,7 @@ class QuantiteMachine(models.Model):
     nombre = models.FloatField()
 
     def __str__(self):
-        return self.nom
+        return f"{self.machine.nom}: {self.nombre}"
 
 
 class Lieu(models.Model):
@@ -74,7 +78,10 @@ class Transport(models.Model):
     )
 
     def __str__(self):
-        return self.nom
+        return f"Depart: {self.depart}; Arrivée: {self.arrivee}"
+
+    def costs(self):
+        return f"Prix unitaire du produit {self.nom}: {self.cout}"
 
 
 class Operation(models.Model):
@@ -96,6 +103,9 @@ class Operation(models.Model):
     def __str__(self):
         return self.nom
 
+    def costs(self):
+        return self.cout
+
 
 class Produit(models.Model):
     nom = models.CharField(max_length=100)
@@ -110,6 +120,9 @@ class Produit(models.Model):
     def __str__(self):
         return self.nom
 
+    def costs(self):
+        return self.prix_de_vente
+
 
 class PrixProduit(models.Model):
     produit = models.ForeignKey(
@@ -119,7 +132,10 @@ class PrixProduit(models.Model):
     prix_achat = models.FloatField()
 
     def __str__(self):
-        return self.nom
+        return self.produit.nom
+    
+    def costs(self):
+        return self.prix_achat
 
 
 class Fournisseur(models.Model):
@@ -128,6 +144,9 @@ class Fournisseur(models.Model):
 
     def __str__(self):
         return self.nom
+
+    def costs(self):
+        return self.prix_produits
 
 
 class QuantiteProduit(models.Model):
@@ -138,7 +157,9 @@ class QuantiteProduit(models.Model):
     )
 
     def __str__(self):
-        return self.nom
+        return f"{self.produit.nom}: {self.nombre}"
+
+    
 
 
 class Stock(models.Model):
@@ -146,7 +167,7 @@ class Stock(models.Model):
     palettes_max = models.FloatField()
 
     def __str__(self):
-        return self.nom
+        return f"qunatité palettes: {self.palettes_max}"
 
 
 class PointDeVente(models.Model):
@@ -156,7 +177,7 @@ class PointDeVente(models.Model):
         on_delete=models.PROTECT,
     )
     heures_de_travail = models.FloatField()
-    stcok = models.ForeignKey(
+    stock = models.ForeignKey(
         Stock,
         on_delete=models.PROTECT,
     )
@@ -175,4 +196,4 @@ class Facture(models.Model):
     client = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.nom
+        return f"Facture du client: {self.client} au point de vente {self.point_de_vente.nom}"
